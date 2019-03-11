@@ -1,4 +1,4 @@
-# jdbc-demo
+# Inventory Management
 
-'Employee Record Management' application built using JDBC with MySQL as back-end
+Sample 'Inventory Management' application built using JDBC with MySQL as back-end
 
