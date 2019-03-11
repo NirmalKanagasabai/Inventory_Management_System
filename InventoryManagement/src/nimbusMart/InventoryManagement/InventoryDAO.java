@@ -60,4 +60,27 @@ public class InventoryDAO {
 			
 		return item;
 	}
+
+	public static void addNewItem(Item newItem) {
+		
+		String insertQuery = "insert into inventory values(?, ?, ?, ?, ?)";
+		
+		try {
+			PreparedStatement insertStatement = connection.prepareStatement(insertQuery);
+			insertStatement.setInt(1, newItem.getItemID());
+			insertStatement.setString(2,  newItem.getItemName());
+			insertStatement.setString(3,  newItem.getItemCompany());
+			insertStatement.setString(4,  newItem.getItemCategory());
+			insertStatement.setLong(5,  newItem.getItemPrice());
+			
+			int count = insertStatement.executeUpdate();
+			System.out.println(count + " no. of row(s) updated");
+			
+			insertStatement.close();
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
