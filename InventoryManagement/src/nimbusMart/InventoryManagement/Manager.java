@@ -62,6 +62,25 @@ public class Manager {
 		
 		int count2 = statement.executeUpdate(newInsertQuery);	
 		System.out.println(count2 + " row(s) affected");
+		
+		int newItemID2 = 15;
+		String newItemName2 = "JIB Wireless";
+		String newItemCompany2 = "SkullCandy";
+		String newItemCategory2 = "Earphones";
+		long newItemPrice2 = 200;
+		
+		String dynamicInsertQuery = "insert into inventory values(?, ?, ?, ?, ?)";
+		
+		// Elegant solution: Use Prepared Statements
+		PreparedStatement preparedStatement = connection.prepareStatement(dynamicInsertQuery);
+		preparedStatement.setInt(1, newItemID2);
+		preparedStatement.setString(2, newItemName2);
+		preparedStatement.setString(3, newItemCompany2);
+		preparedStatement.setString(4, newItemCategory2);
+		preparedStatement.setLong(5, newItemPrice2);
+
+		int count3 = preparedStatement.executeUpdate();
+		System.out.println(count3 + " row(s) affected");
 
 		// Very important to terminate both the statement and the DB connection requests
 		statement.close();
