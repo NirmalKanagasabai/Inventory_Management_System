@@ -11,13 +11,14 @@ public class Manager {
 		
 		String userName = "<<insert_your_userName_here>>";
 		String password = "<<insert_your_password_here>>";
-		String query = "select * from inventory where itemCategory = 'Speakers'";
+		String selectQuery = "select * from inventory where itemCategory = 'Speakers'";
+		String insertQuery = "insert into inventory values(13, 'Deck', 'Sol Republic', 'Speakers', 150)";
 		
 		Class.forName("com.mysql.jdbc.Driver");
 		
 		Connection connection = DriverManager.getConnection(url, userName, password);
 		Statement statement = connection.createStatement();
-		ResultSet resultSet = statement.executeQuery(query);
+		ResultSet resultSet = statement.executeQuery(selectQuery);
 		
 		System.out.println("Item ID" +  " " + "Item Name" + " " + "Item Company" + "  " + "Item Category" + " " + "Item Price");
 		
@@ -30,8 +31,12 @@ public class Manager {
 			long itemPrice = resultSet.getLong(5);
 			
 			
-			System.out.println(itemID +  "    " + itemName + "    " + itemCompany + "    " + itemCategory + "     " + itemPrice);
+			System.out.println(itemID +  " " + itemName + "    " + itemCompany + "    " + itemCategory + "     " + itemPrice);
 		}
+		
+		
+		int count = statement.executeUpdate(insertQuery);
+		System.out.println(count + " row(s) affected");
 		
 		statement.close();
 		connection.close();
