@@ -79,7 +79,6 @@ preparedStatement.close();
 connection.close();
 
 // Note: Use try-catch block to capture the exceptions
-}
 ```
 
 ## References
